@@ -1,0 +1,7 @@
+.iconButton {
+    background: none;
+    outline: none;
+    border: none;
+    margin: 4px;
+    cursor: pointer; 
+}
