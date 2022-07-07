@@ -1,0 +1,16 @@
+.currentWeatherElement {
+  width: 185px;
+  height: 34px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.elementIcon {
+  width: 20px;
+  height: 16px;
+}
+
+.element {
+  margin: 0;
+}

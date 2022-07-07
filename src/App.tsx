@@ -1,9 +1,8 @@
-import Layout from 'components/Layout/Layout';
 import React from 'react';
-import './App.css';
+import CityPage from './components/pages/CityPage/CityPage';
 
 function App() {
-  return <Layout />;
+  return <CityPage />;
 }
 
 export default App;
