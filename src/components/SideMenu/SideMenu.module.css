@@ -26,7 +26,9 @@
 }
 
 .city {
-  font-size: xx-large;
-  font-weight: lighter;
   border-bottom: 1px solid rgba(255, 255, 255, 0.288);
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

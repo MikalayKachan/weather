@@ -4,10 +4,15 @@ import { SideMenu } from 'components/SideMenu';
 
 import styles from './Layout.module.css';
 
-const Layout = () => {
+type PropsType = {
+  children: React.ReactNode;
+};
+
+const Layout = ({ children }: PropsType) => {
   return (
     <div className={styles.layout}>
       <SideMenu />
+      {children}
     </div>
   );
 };

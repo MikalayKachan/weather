@@ -8,6 +8,7 @@ import Settings from 'assets/icons/Settings.png';
 import { IconButton } from 'components/shared/IconButton';
 
 import styles from './SideMenu.module.css';
+import { Typography } from 'components/shared/Typography';
 
 const SideMenu = () => {
   return (
@@ -18,32 +19,36 @@ const SideMenu = () => {
       </div>
 
       <div className={styles.cities}>
-        <div className={styles.city}>City 1</div>
-        <div className={styles.city}>City 2</div>
-        <div className={styles.city}>City 3</div>
-        <div className={styles.city}>City 4</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
-        <div className={styles.city}>City 5</div>
+        <Typography className={styles.city} variant={'h5'}>
+          Brest
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Paris
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Sofia
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Ankara
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Moscow
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Saint-Petersburg
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Ottawa
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Adelaida
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Reykjavik
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Toronto
+        </Typography>
       </div>
 
       <div className={styles.iconsLine}>

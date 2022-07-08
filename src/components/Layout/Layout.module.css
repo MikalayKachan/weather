@@ -1,6 +1,8 @@
 .layout {
-    position: relative;
-    width: 1440px;
-    height: 900px;
-    background: linear-gradient(to top right, #ff9696 0%, #8c6bae);
-  }
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 1440px;
+  height: 900px;
+  background: linear-gradient(to top right, #ff9696 0%, #8c6bae);
+}
