@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Typography } from 'components/shared/Typography';
-import { ForecastElement } from 'components/pages/CityPage/ForecastElement';
-import { CurrentWeatherElement } from 'components/pages/CityPage/CurrentWeatherElement';
+import ForecastElement from './components/ForecastElement/ForecastElement';
+import CurrentWeatherElement from './components/CurrentWeatherElement/CurrentWeatherElement';
 
 import windIcon from 'assets/svg/WindIcon.svg';
 import humIcon from 'assets/svg/HumIcon.svg';
@@ -14,17 +14,17 @@ import styles from './CityPage.module.scss';
 
 const CityPage = () => {
   const currentWeather = [
-    { icon: windIcon, text: 'Wind 10 km/h' },
-    { icon: humIcon, text: 'Hum 54 %' },
-    { icon: rainIcon, text: 'Rain 0.2 %' },
+    { id: '1', icon: windIcon, text: 'Wind 10 km/h' },
+    { id: '2', icon: humIcon, text: 'Hum 54 %' },
+    { id: '3', icon: rainIcon, text: 'Rain 0.2 %' },
   ];
 
   const forecastWeather = [
-    { temp: '24°C', icon: forecastWeatherIcon, day: 'Thu' },
-    { temp: '25°C', icon: forecastWeatherIcon, day: 'Fri' },
-    { temp: '25°C', icon: forecastWeatherIcon, day: 'Sat' },
-    { temp: '27°C', icon: forecastWeatherIcon, day: 'Sun' },
-    { temp: '25°C', icon: forecastWeatherIcon, day: 'Mon' },
+    { id: '1', temp: '24°C', icon: forecastWeatherIcon, day: 'Thu' },
+    { id: '2', temp: '25°C', icon: forecastWeatherIcon, day: 'Fri' },
+    { id: '3', temp: '25°C', icon: forecastWeatherIcon, day: 'Sat' },
+    { id: '4', temp: '27°C', icon: forecastWeatherIcon, day: 'Sun' },
+    { id: '5', temp: '25°C', icon: forecastWeatherIcon, day: 'Mon' },
   ];
 
   return (
@@ -46,31 +46,24 @@ const CityPage = () => {
         </Typography>
         <Typography className={styles.dayAndTime}>Wednesday | 15:00</Typography>
         <div className={styles.currentWeatherBlock}>
-          {currentWeather.map((el, i) => {
+          {currentWeather.map((element) => {
             return (
-              <React.Fragment key={i}>
-                <CurrentWeatherElement icon={el.icon} text={el.text} />
-                {i < currentWeather.length - 1 && (
-                  <Typography
-                    className={styles.separator}
-                    variant="h5"
-                    shadow="withoutShadow"
-                  >
-                    |
-                  </Typography>
-                )}
-              </React.Fragment>
+              <CurrentWeatherElement
+                key={element.id}
+                icon={element.icon}
+                text={element.text}
+              />
             );
           })}
         </div>
         <div className={styles.forecastBlock}>
-          {forecastWeather.map((el, i) => {
+          {forecastWeather.map((day) => {
             return (
               <ForecastElement
-                key={i}
-                temp={el.temp}
-                icon={el.icon}
-                day={el.day}
+                key={day.id}
+                temp={day.temp}
+                icon={day.icon}
+                day={day.day}
               />
             );
           })}

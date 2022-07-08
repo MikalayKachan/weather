@@ -14,3 +14,7 @@
 .element {
   margin: 0;
 }
+
+.separator:last-of-type {
+  display: none;
+}

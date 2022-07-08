@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { Typography } from 'components/shared/Typography';
-import styles from 'components/pages/CityPage/ForecastElement/ForecastElement.module.scss';
+
+import styles from './ForecastElement.module.scss';
 
 type PropsType = {
   temp: string;
