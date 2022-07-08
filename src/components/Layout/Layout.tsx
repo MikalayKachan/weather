@@ -1,11 +1,12 @@
 import React from 'react';
 
-import st from 'components/Layout/Layout.module.css';
-import SideMenu from 'components/SideMenu/SideMenu';
+import { SideMenu } from 'components/SideMenu';
+
+import styles from './Layout.module.css';
 
 const Layout = () => {
   return (
-    <div className={st.layout}>
+    <div className={styles.layout}>
       <SideMenu />
     </div>
   );

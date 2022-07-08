@@ -1,7 +1,14 @@
 .iconButton {
-    background: none;
-    outline: none;
-    border: none;
-    margin: 4px;
-    cursor: pointer; 
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 15%;
+}
+
+.icons {
+  height: 30px;
+  width: 30px;
 }
