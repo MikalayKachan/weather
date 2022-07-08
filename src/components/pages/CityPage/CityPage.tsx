@@ -11,6 +11,7 @@ import forecastWeatherIcon from 'assets/svg/WeatherIcon-2-39.svg';
 import currentWeatherIcon from 'assets/svg/WeatherIcon-2-40.svg';
 
 import styles from './CityPage.module.scss';
+import { Layout } from 'components/Layout';
 
 const CityPage = () => {
   const currentWeather = [
@@ -28,48 +29,55 @@ const CityPage = () => {
   ];
 
   return (
-    <div className={styles.main}>
-      <div className={styles.data}>
-        <div className={styles.weatherIconBlock}>
-          <img className={styles.currentWeatherIcon} src={currentWeatherIcon} />
-        </div>
-        <div className={styles.currentTemperatureBlock}>
-          <Typography className={styles.currentTemperatureValue} variant="h1">
-            27
+    <Layout>
+      <div className={styles.main}>
+        <div className={styles.data}>
+          <div className={styles.weatherIconBlock}>
+            <img
+              className={styles.currentWeatherIcon}
+              src={currentWeatherIcon}
+            />
+          </div>
+          <div className={styles.currentTemperatureBlock}>
+            <Typography className={styles.currentTemperatureValue} variant="h1">
+              27
+            </Typography>
+            <Typography className={styles.currentTemperatureUnit} variant="h3">
+              °C
+            </Typography>
+          </div>
+          <Typography className={styles.date} variant="h2">
+            6 july 2022
           </Typography>
-          <Typography className={styles.currentTemperatureUnit} variant="h3">
-            °C
+          <Typography className={styles.dayAndTime}>
+            Wednesday | 15:00
           </Typography>
-        </div>
-        <Typography className={styles.date} variant="h2">
-          6 july 2022
-        </Typography>
-        <Typography className={styles.dayAndTime}>Wednesday | 15:00</Typography>
-        <div className={styles.currentWeatherBlock}>
-          {currentWeather.map((element) => {
-            return (
-              <CurrentWeatherElement
-                key={element.id}
-                icon={element.icon}
-                text={element.text}
-              />
-            );
-          })}
-        </div>
-        <div className={styles.forecastBlock}>
-          {forecastWeather.map((day) => {
-            return (
-              <ForecastElement
-                key={day.id}
-                temp={day.temp}
-                icon={day.icon}
-                day={day.day}
-              />
-            );
-          })}
+          <div className={styles.currentWeatherBlock}>
+            {currentWeather.map((element) => {
+              return (
+                <CurrentWeatherElement
+                  key={element.id}
+                  icon={element.icon}
+                  text={element.text}
+                />
+              );
+            })}
+          </div>
+          <div className={styles.forecastBlock}>
+            {forecastWeather.map((day) => {
+              return (
+                <ForecastElement
+                  key={day.id}
+                  temp={day.temp}
+                  icon={day.icon}
+                  day={day.day}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

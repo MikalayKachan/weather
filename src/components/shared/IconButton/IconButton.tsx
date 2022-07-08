@@ -1,9 +1,17 @@
 import React from 'react';
 
-import st from 'components/shared/IconButton/IconButton.module.css';
+import styles from './IconButton.module.css';
 
-const IconButton = ({ children }: React.PropsWithChildren) => {
-  return <button className={st.iconButton}>{children}</button>;
+type PropsType = {
+  icon: string;
+};
+
+const IconButton = ({ icon }: PropsType) => {
+  return (
+    <button className={styles.iconButton}>
+      <img src={icon} className={styles.icons} />
+    </button>
+  );
 };
 
 export default IconButton;

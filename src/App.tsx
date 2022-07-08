@@ -1,5 +1,5 @@
 import React from 'react';
-import CityPage from './components/pages/CityPage/CityPage';
+import { CityPage } from 'components/pages/CityPage';
 
 function App() {
   return <CityPage />;

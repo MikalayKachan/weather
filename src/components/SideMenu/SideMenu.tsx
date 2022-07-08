@@ -1,53 +1,60 @@
 import React from 'react';
 
-import IconButton from 'components/shared/IconButton/IconButton';
-
-import Search from 'assets/icons/Search.svg';
-import Home from 'assets/icons/Home.svg';
-import Settings from 'assets/icons/Settings.png';
 import User from 'assets/icons/User.png';
+import Home from 'assets/icons/Home.svg';
+import Search from 'assets/icons/Search.svg';
+import Settings from 'assets/icons/Settings.png';
 
-import st from 'components/SideMenu/SideMenu.module.css';
+import { IconButton } from 'components/shared/IconButton';
+
+import styles from './SideMenu.module.css';
+import { Typography } from 'components/shared/Typography';
 
 const SideMenu = () => {
   return (
-    <div className={st.sideMenu}>
-      <IconButton>
-        <img
-          style={{ height: '30', width: '30px', marginTop: '20px' }}
-          src={Home}
-        />
-      </IconButton>
-      <IconButton>
-        <img
-          style={{ height: '26px', width: '26px', marginTop: '20px' }}
-          src={Search}
-        />
-      </IconButton>
-      <div style={{ marginTop: '20px', color: 'white' }}>
-        <div className={st.city}>City 1</div>
-        <div className={st.city}>City 2</div>
-        <div className={st.city}>City 3</div>
-        <div className={st.city}>City 4</div>
-        <div className={st.city}>City 5</div>
+    <div className={styles.sideMenu}>
+      <div className={styles.iconsLine}>
+        <IconButton icon={Home} />
+        <IconButton icon={Search} />
       </div>
-      <IconButton>
-        <img
-          style={{ height: '26px', width: '26px', marginTop: '20px' }}
-          src={Settings}
-        />
-      </IconButton>
-      <IconButton>
-        <img
-          style={{
-            height: '26px',
-            width: '26px',
-            position: 'absolute',
-            bottom: '15px',
-          }}
-          src={User}
-        />
-      </IconButton>
+
+      <div className={styles.cities}>
+        <Typography className={styles.city} variant={'h5'}>
+          Brest
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Paris
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Sofia
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Ankara
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Moscow
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Saint-Petersburg
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Ottawa
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Adelaida
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Reykjavik
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Toronto
+        </Typography>
+      </div>
+
+      <div className={styles.iconsLine}>
+        <IconButton icon={User} />
+        <IconButton icon={Settings} />
+      </div>
     </div>
   );
 };

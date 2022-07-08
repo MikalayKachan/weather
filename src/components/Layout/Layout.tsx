@@ -1,12 +1,18 @@
 import React from 'react';
 
-import st from 'components/Layout/Layout.module.css';
-import SideMenu from 'components/SideMenu/SideMenu';
+import { SideMenu } from 'components/SideMenu';
 
-const Layout = () => {
+import styles from './Layout.module.css';
+
+type PropsType = {
+  children: React.ReactNode;
+};
+
+const Layout = ({ children }: PropsType) => {
   return (
-    <div className={st.layout}>
+    <div className={styles.layout}>
       <SideMenu />
+      {children}
     </div>
   );
 };
