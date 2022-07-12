@@ -44,10 +44,43 @@ const SideMenu = () => {
           Adelaida
         </Typography>
         <Typography className={styles.city} variant={'h5'}>
-          Reykjavik
+          Ottawa
         </Typography>
         <Typography className={styles.city} variant={'h5'}>
-          Toronto
+          Adelaida
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Adelaida
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Ottawa
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Adelaida
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Adelaida
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Adelaida
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Ottawa
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Adelaida
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Adelaida
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Adelaida
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Ottawa
+        </Typography>
+        <Typography className={styles.city} variant={'h5'}>
+          Adelaida
         </Typography>
       </div>
 

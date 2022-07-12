@@ -12,7 +12,7 @@ const Layout = ({ children }: PropsType) => {
   return (
     <div className={styles.layout}>
       <SideMenu />
-      {children}
+      <div className={styles.inner}>{children}</div>
     </div>
   );
 };
