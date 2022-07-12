@@ -9,6 +9,7 @@ import { IconButton } from 'components/shared/IconButton';
 import { Typography } from 'components/shared/Typography';
 
 import styles from './SideMenu.module.css';
+import LinesEllipsis from 'react-lines-ellipsis';
 
 type PropsType = {
   onSearchClick: () => void;
@@ -22,6 +23,13 @@ const SideMenu = ({ onSearchClick }: PropsType) => {
         <IconButton icon={Search} onClick={onSearchClick} />
       </div>
       <div className={styles.cities}>
+        <LinesEllipsis
+          text="ervervevedfvefvsgbdhgsdsvveverv"
+          maxLine={1}
+          ellipsis="..."
+          trimRight
+          basedOn="letters"
+        />
         <Typography className={styles.city} variant={'h5'}>
           Brest
         </Typography>
@@ -36,9 +44,6 @@ const SideMenu = ({ onSearchClick }: PropsType) => {
         </Typography>
         <Typography className={styles.city} variant={'h5'}>
           Moscow
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Saint-Petersburg
         </Typography>
         <Typography className={styles.city} variant={'h5'}>
           Ottawa
