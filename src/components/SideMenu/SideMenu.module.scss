@@ -1,7 +1,7 @@
 .sideMenu {
   display: flex;
   flex-direction: column;
-  width: 150px;
+  width: 250px;
   align-items: flex-start;
   padding: 10px;
   border-right: 1px solid rgba(255, 255, 255, 0.288);
@@ -20,13 +20,17 @@
   flex: 1;
   color: white;
   overflow: auto;
+  margin: 12px 0;
+}
+
+.cityContainer {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.288);
+  padding: 10px 0;
 }
 
 .city {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.288);
-  width: 100%;
-  height: 30px;
-  white-space: nowrap;
   margin: 0;
-  padding: 20px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
