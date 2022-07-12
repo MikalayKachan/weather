@@ -9,6 +9,7 @@ const SideMenuContainer = () => {
   const [isSearchModalOpen, openSearchModal, closeSearchModal] = useModal(
     {},
   ) as [boolean, () => void, () => void];
+
   const handleSearchClick = () => {
     openSearchModal();
   };

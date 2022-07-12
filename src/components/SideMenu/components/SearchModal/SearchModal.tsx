@@ -1,7 +1,9 @@
 import React from 'react';
-import styles from './SearchModal.module.scss';
+
 import { Modal } from 'components/shared/Modal';
 import { Typography } from 'components/shared/Typography';
+
+import styles from './SearchModal.module.scss';
 
 type PropsType = {
   isSearchModalOpen: boolean;
