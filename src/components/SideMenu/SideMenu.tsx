@@ -6,18 +6,21 @@ import Search from 'assets/icons/Search.svg';
 import Settings from 'assets/icons/Settings.png';
 
 import { IconButton } from 'components/shared/IconButton';
-
-import styles from './SideMenu.module.css';
 import { Typography } from 'components/shared/Typography';
 
-const SideMenu = () => {
+import styles from './SideMenu.module.css';
+
+type PropsType = {
+  onSearchClick: () => void;
+};
+
+const SideMenu = ({ onSearchClick }: PropsType) => {
   return (
     <div className={styles.sideMenu}>
       <div className={styles.iconsLine}>
         <IconButton icon={Home} />
-        <IconButton icon={Search} />
+        <IconButton icon={Search} onClick={onSearchClick} />
       </div>
-
       <div className={styles.cities}>
         <Typography className={styles.city} variant={'h5'}>
           Brest
@@ -83,7 +86,6 @@ const SideMenu = () => {
           Adelaida
         </Typography>
       </div>
-
       <div className={styles.iconsLine}>
         <IconButton icon={User} />
         <IconButton icon={Settings} />

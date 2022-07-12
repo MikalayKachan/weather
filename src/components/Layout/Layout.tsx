@@ -8,13 +8,11 @@ type PropsType = {
   children: React.ReactNode;
 };
 
-const Layout = ({ children }: PropsType) => {
-  return (
-    <div className={styles.layout}>
-      <SideMenu />
-      <div className={styles.inner}>{children}</div>
-    </div>
-  );
-};
+const Layout = ({ children }: PropsType) => (
+  <div className={styles.layout}>
+    <SideMenu />
+    <div className={styles.inner}>{children}</div>
+  </div>
+);
 
 export default Layout;
