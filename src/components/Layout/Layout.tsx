@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SideMenu } from 'components/SideMenu';
+import { SideMenuContainer } from 'components/SideMenu';
 
 import styles from './Layout.module.css';
 
@@ -11,7 +11,7 @@ type PropsType = {
 const Layout = ({ children }: PropsType) => {
   return (
     <div className={styles.layout}>
-      <SideMenu />
+      <SideMenuContainer />
       <div className={styles.inner}>{children}</div>
     </div>
   );
