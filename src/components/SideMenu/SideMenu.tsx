@@ -9,6 +9,7 @@ import { IconButton } from 'components/shared/IconButton';
 import { Typography } from 'components/shared/Typography';
 
 import styles from './SideMenu.module.scss';
+import { TextButton } from 'components/shared/Button';
 
 type PropsType = {
   onSearchClick: () => void;
@@ -65,11 +66,11 @@ const SideMenu = ({ onSearchClick }: PropsType) => {
       </div>
       <div className={styles.cities}>
         {cities.map((city, index) => (
-          <div key={index} className={styles.cityContainer}>
+          <TextButton key={index} className={styles.cityContainer}>
             <Typography className={styles.city} variant={'h5'}>
               {city}
             </Typography>
-          </div>
+          </TextButton>
         ))}
       </div>
       <div className={styles.iconsLine}>
