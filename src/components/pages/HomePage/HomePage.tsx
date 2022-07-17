@@ -29,7 +29,9 @@ const HomePage = () => {
             Wednesday | 15:00
           </Typography>
         </div>
-        <TextButton text="details..." />
+        <TextButton>
+          <Typography variant={'h5'}>details...</Typography>
+        </TextButton>
       </div>
     </Layout>
   );

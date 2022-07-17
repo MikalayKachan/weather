@@ -8,11 +8,53 @@ import Settings from 'assets/icons/Settings.png';
 import { IconButton } from 'components/shared/IconButton';
 import { Typography } from 'components/shared/Typography';
 
-import styles from './SideMenu.module.css';
+import styles from './SideMenu.module.scss';
 
 type PropsType = {
   onSearchClick: () => void;
 };
+
+const cities = [
+  'Ambriz',
+  'Ambriz',
+  'Bengo',
+  'Bié',
+  'Huambo',
+  'Huambo carlos del city',
+  'Bengo',
+  'Bié',
+  'Huambo',
+  'Huambo carlos del city',
+  'Ambriz',
+  'Ambriz',
+  'Bengo',
+  'Bié',
+  'Huambo',
+  'Huambo carlos del city',
+  'Bengo',
+  'Bié',
+  'Huambo',
+  'Huambo carlos del city',
+  'Ambriz',
+  'Bengo',
+  'Bié',
+  'Huambo',
+  'Huambo carlos del city',
+  'Bengo',
+  'Bié',
+  'Huambo',
+  'Huambo carlos del city',
+  'Ambriz',
+  'Ambriz',
+  'Bengo',
+  'Bié',
+  'Huambo',
+  'Huambo carlos del city',
+  'Bengo',
+  'Bié',
+  'Huambo',
+  'Huambo carlos del city',
+];
 
 const SideMenu = ({ onSearchClick }: PropsType) => {
   return (
@@ -22,69 +64,13 @@ const SideMenu = ({ onSearchClick }: PropsType) => {
         <IconButton icon={Search} onClick={onSearchClick} />
       </div>
       <div className={styles.cities}>
-        <Typography className={styles.city} variant={'h5'}>
-          Brest
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Paris
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Sofia
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Ankara
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Moscow
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Saint-Petersburg
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Ottawa
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Adelaida
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Ottawa
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Adelaida
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Adelaida
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Ottawa
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Adelaida
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Adelaida
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Adelaida
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Ottawa
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Adelaida
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Adelaida
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Adelaida
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Ottawa
-        </Typography>
-        <Typography className={styles.city} variant={'h5'}>
-          Adelaida
-        </Typography>
+        {cities.map((city, index) => (
+          <div key={index} className={styles.cityContainer}>
+            <Typography className={styles.city} variant={'h5'}>
+              {city}
+            </Typography>
+          </div>
+        ))}
       </div>
       <div className={styles.iconsLine}>
         <IconButton icon={User} />
