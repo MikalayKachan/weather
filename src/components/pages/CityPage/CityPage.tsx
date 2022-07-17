@@ -12,6 +12,7 @@ import currentWeatherIcon from 'assets/svg/WeatherIcon-2-40.svg';
 
 import styles from './CityPage.module.scss';
 import { Layout } from 'components/Layout';
+import { useParams } from 'react-router-dom';
 
 const CityPage = () => {
   const currentWeather = [
@@ -27,6 +28,9 @@ const CityPage = () => {
     { id: '4', temp: '27°C', icon: forecastWeatherIcon, day: 'Sun' },
     { id: '5', temp: '25°C', icon: forecastWeatherIcon, day: 'Mon' },
   ];
+
+  const params = useParams();
+  console.log(params);
 
   return (
     <Layout>
