@@ -1,0 +1,14 @@
+.iconButton {
+  background: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.288);
+  border-radius: 15%;
+}
+
+.icons {
+  height: 30px;
+  width: 30px;
+  vertical-align: top;
+}
