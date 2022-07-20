@@ -25,7 +25,6 @@ type PropsType = {
 
 const SearchModal = ({ isSearchModalOpen, onClose }: PropsType) => {
   const [searchValue, setSearchValue] = useState('');
-  console.log(searchValue);
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);

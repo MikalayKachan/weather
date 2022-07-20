@@ -18,7 +18,7 @@ type PropsType = {
 const City = ({ city }: PropsType) => (
   <div className={styles.city}>
     <NavLink
-      to={'/city' + '/lat=' + city.lat + '/lon=' + city.lon}
+      to={'/city?lat=' + city.lat + '&lon=' + city.lon}
       className={styles.navlink}
     >
       <Typography key={city.lat} variant={'h5'} className={styles.text}>
