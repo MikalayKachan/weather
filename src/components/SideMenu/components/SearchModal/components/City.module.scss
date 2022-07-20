@@ -1,0 +1,28 @@
+.city {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  transform: scale(1);
+  transition: transform 0.5s;
+
+  &:hover {
+    transform: scale(1.5);
+    transition: transform 0.5s;
+  }
+}
+
+.text {
+  margin: 12px 0 12px 0;
+}
+
+.buttonStyle {
+  border: none;
+  padding: 2px 0 0 10px;
+
+}
+
+.iconStyle {
+  filter: invert(99%) sepia(4%) saturate(97%) hue-rotate(343deg) brightness(116%) contrast(100%);
+  height: 20px;
+  width: 20px;
+}
