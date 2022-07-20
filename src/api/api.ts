@@ -15,8 +15,8 @@ export const API = {
   },
   async getWeatherData(
     reqType: string,
-    lat: number,
-    lon: number,
+    lat: string | null,
+    lon: string | null,
     units: string,
   ) {
     let response = await axios.get(
