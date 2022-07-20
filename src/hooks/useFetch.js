@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
 
 export const useFetch = (
-  { defaultData = null, fetcher, stopRequest, immediately, onSuccess, onError },
+  {
+    defaultData,
+    fetcher,
+    stopRequest,
+    immediately,
+    onSuccess = null,
+    onError = null,
+  },
   payload,
   triggers = [],
 ) => {

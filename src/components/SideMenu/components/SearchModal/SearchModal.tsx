@@ -1,6 +1,8 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { API } from 'api/api';
+
+import { useFetch } from 'hooks/useFetch';
 
 import { Modal } from 'components/shared/Modal';
 import { Typography } from 'components/shared/Typography';
@@ -10,7 +12,6 @@ import City from './components/City';
 import styles from './SearchModal.module.scss';
 
 export type CityType = {
-  id: number;
   name: string;
   country: string;
   lat: number;
@@ -24,30 +25,28 @@ type PropsType = {
 
 const SearchModal = ({ isSearchModalOpen, onClose }: PropsType) => {
   const [searchValue, setSearchValue] = useState('');
-  const [searchedCityList, setSearchedCityList] = useState<CityType[]>([]);
+  console.log(searchValue);
 
-  const inputHandler = (e: FormEvent<HTMLInputElement>) => {
+  const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
 
+  const { loading, data, setState } = useFetch(
+    {
+      defaultData: null,
+      fetcher: API.getCitiesList,
+      stopRequest: searchValue.length < 2,
+      immediately: false,
+      onSuccess: null,
+      onError: null,
+    },
+    searchValue,
+    [searchValue],
+  ) as { loading: boolean; data: CityType[]; setState: Function };
+
   useEffect(() => {
-    if (searchValue !== '') {
-      API.getCitiesList(searchValue).then((res) => {
-        console.log(res);
-        let resCityList = [] as CityType[];
-        res.map(({ name, country, lat, lon }: any) => {
-          resCityList.push({
-            id: lat,
-            name,
-            country,
-            lat,
-            lon,
-          });
-        });
-        setSearchedCityList(resCityList);
-      });
-    } else {
-      setSearchedCityList([]);
+    if (searchValue.length < 2) {
+      setState({ loading: false, error: null, data: [] });
     }
   }, [searchValue]);
 
@@ -59,25 +58,17 @@ const SearchModal = ({ isSearchModalOpen, onClose }: PropsType) => {
         className={styles.input}
         value={searchValue}
         autoFocus
-        onInput={inputHandler}
+        onChange={inputHandler}
       />
-      <div className={styles.cityList}>
-        {searchedCityList.map((city) => (
-          <City key={city.id} city={city} />
-          // <>
-          //   <NavLink to={'/city' + '/lat=' + city.lat + '/lon=' + city.lon}>
-          //     <Typography key={city.id} variant={'h5'} className={styles.city}>
-          //       {city.name + ', ' + city.country}
-          //     </Typography>
-          //   </NavLink>
-          //   <IconButton
-          //     icon={Add}
-          //     buttonStyle={styles.buttonStyle}
-          //     iconStyle={styles.iconStyle}
-          //   />
-          // </>
-        ))}
-      </div>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className={styles.cityList}>
+          {data?.map((city) => (
+            <City key={city.lat} city={city} />
+          ))}
+        </div>
+      )}
     </Modal>
   );
 };

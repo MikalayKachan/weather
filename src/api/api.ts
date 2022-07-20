@@ -2,16 +2,12 @@ import axios from 'axios';
 
 export const API = {
   async getCitiesList(cityName: string) {
-    let response = await axios.get(
-      `http://api.openweathermap.org/geo/1.0/direct`,
-      {
-        params: {
-          q: cityName,
-          limit: 5,
-        },
+    return await axios.get(`http://api.openweathermap.org/geo/1.0/direct`, {
+      params: {
+        q: cityName,
+        limit: 5,
       },
-    );
-    return response.data;
+    });
   },
   async getWeatherData(
     reqType: string,
@@ -19,7 +15,7 @@ export const API = {
     lon: number,
     units: string,
   ) {
-    let response = await axios.get(
+    return await axios.get(
       `https://api.openweathermap.org/data/2.5/${reqType}`,
       {
         params: {
@@ -29,7 +25,6 @@ export const API = {
         },
       },
     );
-    return response.data;
   },
 };
 
