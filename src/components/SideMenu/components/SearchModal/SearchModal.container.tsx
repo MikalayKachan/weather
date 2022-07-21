@@ -22,6 +22,7 @@ type PropsType = {
 
 const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
   const [searchValue, setSearchValue] = useState('');
+  const [cityToSave, setCityToSave] = useState<null | CityType>(null);
 
   let history = useHistory();
 
@@ -58,6 +59,32 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
     nextCity && history.push(`/city?lat=${nextCity.lat}&lon=${nextCity.lon}`);
   };
 
+  const handleAddCityClick = (id: number) => {
+    const nextCity = citiesList.find((city) => city.lat === id) as CityType;
+    const newCityToSave = {
+      name: nextCity.name,
+      country: nextCity.country,
+      lat: nextCity.lat,
+      lon: nextCity.lon,
+    };
+    nextCity && setCityToSave(newCityToSave);
+  };
+
+  useEffect(() => {
+    const JSONCities = localStorage.getItem('savedCities');
+    const citiesFromStorage = JSONCities && JSON.parse(JSONCities);
+    if (citiesFromStorage === null) {
+      cityToSave &&
+        localStorage.setItem('savedCities', JSON.stringify([cityToSave]));
+    } else {
+      cityToSave &&
+        localStorage.setItem(
+          'savedCities',
+          JSON.stringify([...citiesFromStorage, cityToSave]),
+        );
+    }
+  }, [cityToSave]);
+
   return (
     <SearchModal
       isSearchModalOpen={isSearchModalOpen}
@@ -67,6 +94,7 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
       citiesListLoading={citiesListLoading}
       citiesList={citiesList}
       onCityClick={handleCityClick}
+      onAddCityClick={handleAddCityClick}
     />
   );
 };

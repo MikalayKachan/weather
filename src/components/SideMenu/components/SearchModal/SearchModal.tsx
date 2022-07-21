@@ -17,6 +17,7 @@ type PropsType = {
   citiesListLoading: boolean;
   citiesList: CityType[];
   onCityClick: (id: number) => void;
+  onAddCityClick: (id: number) => void;
 };
 
 const SearchModal = ({
@@ -27,6 +28,7 @@ const SearchModal = ({
   citiesListLoading,
   citiesList,
   onCityClick,
+  onAddCityClick,
 }: PropsType) => (
   <Modal open={isSearchModalOpen} onClose={onClose}>
     <Typography className={styles.modalHeader}>Find city:</Typography>
@@ -42,7 +44,12 @@ const SearchModal = ({
     ) : (
       <div className={styles.cityList}>
         {citiesList?.map((city) => (
-          <City key={city.lat} {...city} onCityClick={onCityClick} />
+          <City
+            key={city.lat}
+            {...city}
+            onCityClick={onCityClick}
+            onAddCityClick={onAddCityClick}
+          />
         ))}
       </div>
     )}

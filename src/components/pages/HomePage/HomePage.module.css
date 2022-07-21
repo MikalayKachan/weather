@@ -9,7 +9,7 @@
   width: 245px;
   height: 180px;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .currentTemperatureValue {

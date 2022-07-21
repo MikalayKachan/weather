@@ -12,9 +12,16 @@ type PropsType = {
   name: string;
   country: string;
   onCityClick: (lat: number) => void;
+  onAddCityClick: (lat: number) => void;
 };
 
-const City = ({ lat, name, country, onCityClick }: PropsType) => (
+const City = ({
+  lat,
+  name,
+  country,
+  onCityClick,
+  onAddCityClick,
+}: PropsType) => (
   <div className={styles.city}>
     <Typography
       variant={'h5'}
@@ -27,6 +34,7 @@ const City = ({ lat, name, country, onCityClick }: PropsType) => (
       icon={Add}
       buttonStyle={styles.buttonStyle}
       iconStyle={styles.iconStyle}
+      onClick={() => onAddCityClick(lat)}
     />
   </div>
 );
