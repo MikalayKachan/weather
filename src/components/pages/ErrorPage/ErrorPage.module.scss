@@ -1,0 +1,43 @@
+.errorPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.notFound {
+  max-width: 767px;
+  width: 100%;
+  text-align: center;
+}
+
+.notFound404 {
+  font-size: 186px;
+  font-weight: 300;
+  margin: 0;
+  background: linear-gradient(to top right, #ff9696 0%, #8c6bae);
+  color: transparent;
+  -webkit-background-clip: text;
+  filter: none;
+}
+
+.errorHeader {
+  margin-top: 0;
+  color: black;
+  font-weight: 300;
+  filter: none;
+}
+
+.errorText {
+  margin-top: 0;
+  color: black;
+  filter: none;
+}
+
+.link {
+  color: #8c6bae;
+  text-decoration: none;
+  border-bottom: 1px dashed #8c6bae;
+  cursor: pointer;
+}
