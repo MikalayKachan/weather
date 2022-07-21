@@ -26,6 +26,11 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
 
   let history = useHistory();
 
+  const onModalClose = () => {
+    setSearchValue('');
+    onClose();
+  };
+
   const {
     loading: citiesListLoading,
     data: citiesList,
@@ -55,7 +60,7 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
 
   const handleCityClick = (id: number) => {
     const nextCity = citiesList.find((city) => city.lat === id);
-    onClose();
+    onModalClose();
     nextCity && history.push(`/city?lat=${nextCity.lat}&lon=${nextCity.lon}`);
   };
 
@@ -88,7 +93,7 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
   return (
     <SearchModal
       isSearchModalOpen={isSearchModalOpen}
-      onClose={onClose}
+      onClose={onModalClose}
       searchValue={searchValue}
       onInputChange={handleInputChange}
       citiesListLoading={citiesListLoading}

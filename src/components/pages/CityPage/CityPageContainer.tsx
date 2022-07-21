@@ -53,12 +53,42 @@ const CityPageContainer = () => {
   let humidity;
   let windSpeed;
   let clouds;
+  let name;
+  let date;
+  let day;
+  let time;
+
+  let currentDate;
+
+  const dateWithUTC = (timezone: number) => {
+    let dateUTC = new Date().toString();
+    let dateInMiliSeconds = Date.parse(dateUTC);
+    return dateInMiliSeconds + timezone * 1000;
+  };
 
   if (currentWeatherData) {
+    currentDate = dateWithUTC(currentWeatherData.timezone);
+
     currentTemp = Math.round(currentWeatherData.main.temp);
     humidity = currentWeatherData.main.humidity;
     windSpeed = currentWeatherData.wind.speed;
     clouds = currentWeatherData.clouds.all;
+    name = currentWeatherData.name;
+
+    date = new Date(currentDate).toLocaleString('en-GB', {
+      timeZone: 'UTC',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    day = new Date(currentDate).toLocaleString('en-GB', {
+      timeZone: 'UTC',
+      weekday: 'long',
+    });
+    time = new Date(currentDate).toLocaleString('en-GB', {
+      timeZone: 'UTC',
+      timeStyle: 'short',
+    });
   }
 
   console.log('currentTemp', currentTemp);
@@ -69,6 +99,10 @@ const CityPageContainer = () => {
       humidity={humidity}
       windSpeed={windSpeed}
       clouds={clouds}
+      name={name}
+      date={date}
+      day={day}
+      time={time}
     />
   );
 };
