@@ -1,30 +1,28 @@
 import React from 'react';
 
-import { NavLink } from 'react-router-dom';
-
 import Add from 'assets/icons/Add.svg';
 
 import { IconButton } from 'components/shared/IconButton';
 import { Typography } from 'components/shared/Typography';
 
-import { CityType } from 'components/SideMenu/components/SearchModal/SearchModal';
-
 import styles from './City.module.scss';
 
 type PropsType = {
-  city: CityType;
+  lat: number;
+  name: string;
+  country: string;
+  onCityClick: (lat: number) => void;
 };
 
-const City = ({ city }: PropsType) => (
+const City = ({ lat, name, country, onCityClick }: PropsType) => (
   <div className={styles.city}>
-    <NavLink
-      to={'/city?lat=' + city.lat + '&lon=' + city.lon}
-      className={styles.navlink}
+    <Typography
+      variant={'h5'}
+      className={styles.text}
+      onClick={() => onCityClick(lat)}
     >
-      <Typography key={city.lat} variant={'h5'} className={styles.text}>
-        {city.name + ', ' + city.country}
-      </Typography>
-    </NavLink>
+      {name + ', ' + country}
+    </Typography>
     <IconButton
       icon={Add}
       buttonStyle={styles.buttonStyle}
