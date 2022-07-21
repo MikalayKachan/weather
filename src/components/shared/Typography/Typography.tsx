@@ -26,6 +26,7 @@ type PropsType = {
   color: 'primary' | 'dark';
   shadow: 'withShadow' | 'withoutShadow';
   className?: string;
+  onClick?: () => void;
 };
 
 const Typography = ({
@@ -34,6 +35,7 @@ const Typography = ({
   color,
   shadow,
   className,
+  onClick,
 }: PropsType) => {
   return (
     <p
@@ -44,6 +46,7 @@ const Typography = ({
         SHADOW[shadow],
         className,
       )}
+      onClick={onClick}
     >
       {children}
     </p>
