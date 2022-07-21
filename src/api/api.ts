@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+type APIType = {
+  reqType: string;
+  lat: string | null;
+  lon: string | null;
+  units: string;
+};
+
 export const API = {
   async getCitiesList(cityName: string) {
     return await axios.get(`http://api.openweathermap.org/geo/1.0/direct`, {
@@ -9,12 +16,7 @@ export const API = {
       },
     });
   },
-  async getWeatherData(
-    reqType: string,
-    lat: string | null,
-    lon: string | null,
-    units: string,
-  ) {
+  async getWeatherData({ reqType, lat, lon, units }: APIType) {
     return await axios.get(
       `https://api.openweathermap.org/data/2.5/${reqType}`,
       {
