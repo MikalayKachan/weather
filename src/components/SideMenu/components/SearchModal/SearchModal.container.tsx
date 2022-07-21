@@ -49,6 +49,11 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
     }
   }, [searchValue]);
 
+  const onCloseModal = () => {
+    onClose();
+    setSearchValue('');
+  };
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
@@ -88,7 +93,7 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
   return (
     <SearchModal
       isSearchModalOpen={isSearchModalOpen}
-      onClose={onClose}
+      onClose={onCloseModal}
       searchValue={searchValue}
       onInputChange={handleInputChange}
       citiesListLoading={citiesListLoading}

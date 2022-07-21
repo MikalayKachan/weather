@@ -8,6 +8,7 @@ import { City } from '../City';
 import { CityType } from './SearchModal.container';
 
 import styles from './SearchModal.module.scss';
+import { Loader } from 'components/shared/Loader';
 
 type PropsType = {
   isSearchModalOpen: boolean;
@@ -40,7 +41,7 @@ const SearchModal = ({
       onChange={onInputChange}
     />
     {citiesListLoading ? (
-      <div>Loading...</div>
+      <Loader className={styles.loading} />
     ) : (
       <div className={styles.cityList}>
         {citiesList?.map((city) => (
