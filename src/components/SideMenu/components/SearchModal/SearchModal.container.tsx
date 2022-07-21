@@ -54,8 +54,8 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
 
   const handleCityClick = (id: number) => {
     const nextCity = citiesList.find((city) => city.lat === id);
-    nextCity &&
-      history.push('/city?lat=' + nextCity.lat + '&lon=' + nextCity.lon);
+    onClose();
+    nextCity && history.push(`/city?lat=${nextCity.lat}&lon=${nextCity.lon}`);
   };
 
   return (

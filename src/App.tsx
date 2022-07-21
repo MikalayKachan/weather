@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path={ROUTES.ROOT} exact={true} component={HomePage} />
-        <Route path={ROUTES.CITY_PAGE} exact={true} component={CityPage} />
+        <Route path={ROUTES.CITY_PAGE} component={CityPage} />
         <Route path={ROUTES.ERROR_PAGE} exact={true} component={ErrorPage} />
       </Switch>
     </BrowserRouter>
