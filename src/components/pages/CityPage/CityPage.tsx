@@ -13,11 +13,23 @@ import currentWeatherIcon from 'assets/svg/WeatherIcon-2-40.svg';
 import styles from './CityPage.module.scss';
 import { Layout } from 'components/Layout';
 
-const CityPage = () => {
+type CityPagePropsType = {
+  currentTemp: number | undefined;
+  humidity: number | undefined;
+  windSpeed: number | undefined;
+  clouds: number | undefined;
+};
+
+const CityPage = ({
+  currentTemp,
+  humidity,
+  windSpeed,
+  clouds,
+}: CityPagePropsType) => {
   const currentWeather = [
-    { id: '1', icon: windIcon, text: 'Wind 10 km/h' },
-    { id: '2', icon: humIcon, text: 'Hum 54 %' },
-    { id: '3', icon: rainIcon, text: 'Rain 0.2 %' },
+    { id: '1', icon: windIcon, text: `Wind ${windSpeed} m/s` },
+    { id: '2', icon: humIcon, text: `Hum ${humidity}  %` },
+    { id: '3', icon: rainIcon, text: `Clouds ${clouds} %` },
   ];
 
   const forecastWeather = [
@@ -40,7 +52,7 @@ const CityPage = () => {
           </div>
           <div className={styles.currentTemperatureBlock}>
             <Typography className={styles.currentTemperatureValue} variant="h1">
-              27
+              {currentTemp}
             </Typography>
             <Typography className={styles.currentTemperatureUnit} variant="h3">
               °C
