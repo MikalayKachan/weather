@@ -17,6 +17,11 @@
   height: 100px;
 }
 
+.currentCityWeatherBlock{
+  display: flex;
+  flex-direction: row;
+}
+
 .currentTemperatureBlock {
   margin: 10px 0 0 0;
   width: 245px;
@@ -31,6 +36,16 @@
 
 .currentTemperatureUnit {
   margin: 20px 0 0 10px;
+}
+
+.currentCityName {
+  height: 180px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin: 0 0 0 10px;
 }
 
 .date {

@@ -18,6 +18,10 @@ type CityPagePropsType = {
   humidity: number | undefined;
   windSpeed: number | undefined;
   clouds: number | undefined;
+  name: string | undefined;
+  date: string | undefined;
+  day: string | undefined;
+  time: string | undefined;
 };
 
 const CityPage = ({
@@ -25,6 +29,10 @@ const CityPage = ({
   humidity,
   windSpeed,
   clouds,
+  name,
+  date,
+  day,
+  time,
 }: CityPagePropsType) => {
   const currentWeather = [
     { id: '1', icon: windIcon, text: `Wind ${windSpeed} m/s` },
@@ -50,19 +58,30 @@ const CityPage = ({
               src={currentWeatherIcon}
             />
           </div>
-          <div className={styles.currentTemperatureBlock}>
-            <Typography className={styles.currentTemperatureValue} variant="h1">
-              {currentTemp}
-            </Typography>
-            <Typography className={styles.currentTemperatureUnit} variant="h3">
-              °C
+          <div className={styles.currentCityWeatherBlock}>
+            <div className={styles.currentTemperatureBlock}>
+              <Typography
+                className={styles.currentTemperatureValue}
+                variant="h1"
+              >
+                {currentTemp}
+              </Typography>
+              <Typography
+                className={styles.currentTemperatureUnit}
+                variant="h3"
+              >
+                °C
+              </Typography>
+            </div>
+            <Typography className={styles.currentCityName} variant="h2">
+              {name}
             </Typography>
           </div>
           <Typography className={styles.date} variant="h2">
-            6 july 2022
+            {date}
           </Typography>
           <Typography className={styles.dayAndTime}>
-            Wednesday | 15:00
+            {day} | {time}
           </Typography>
           <div className={styles.currentWeatherBlock}>
             {currentWeather.map((element) => {
