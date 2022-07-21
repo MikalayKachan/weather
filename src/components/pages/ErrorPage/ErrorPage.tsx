@@ -1,8 +1,12 @@
 import React from 'react';
-import { Typography } from 'components/shared/Typography';
-import styles from './ErrorPage.module.scss';
-import { NavLink } from 'react-router-dom';
+
 import { ROUTES } from 'constants/routes';
+
+import { NavLink } from 'react-router-dom';
+
+import { Typography } from 'components/shared/Typography';
+
+import styles from './ErrorPage.module.scss';
 
 const ErrorPage = () => (
   <div className={styles.errorPage}>
