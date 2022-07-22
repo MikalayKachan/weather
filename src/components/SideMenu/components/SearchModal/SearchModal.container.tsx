@@ -23,6 +23,7 @@ type PropsType = {
 const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
   const [searchValue, setSearchValue] = useState('');
   const [cityToSave, setCityToSave] = useState<null | CityType>(null);
+  const [savedCitiesList, setSavedCitiesList] = useState<CityType[]>([]);
 
   let history = useHistory();
 
@@ -53,11 +54,6 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
       setCitiesList({ loading: false, error: null, data: [] });
     }
   }, [searchValue]);
-
-  const onModalClose = () => {
-    onClose();
-    setSearchValue('');
-  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
@@ -93,6 +89,8 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
           JSON.stringify([...citiesFromStorage, cityToSave]),
         );
     }
+    cityToSave && console.log([...citiesFromStorage, cityToSave]);
+    cityToSave && setSavedCitiesList([...citiesFromStorage, cityToSave]);
   }, [cityToSave]);
 
   return (
@@ -103,6 +101,7 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
       onInputChange={handleInputChange}
       citiesListLoading={citiesListLoading}
       citiesList={citiesList}
+      savedCitiesList={savedCitiesList}
       onCityClick={handleCityClick}
       onAddCityClick={handleAddCityClick}
     />

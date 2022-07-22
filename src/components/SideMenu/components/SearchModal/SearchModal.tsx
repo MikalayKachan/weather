@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from 'react';
 
 import { Modal } from 'components/shared/Modal';
+import { Loader } from 'components/shared/Loader';
 import { Typography } from 'components/shared/Typography';
 
 import { City } from '../City';
@@ -8,7 +9,6 @@ import { City } from '../City';
 import { CityType } from './SearchModal.container';
 
 import styles from './SearchModal.module.scss';
-import { Loader } from 'components/shared/Loader';
 
 type PropsType = {
   isSearchModalOpen: boolean;
@@ -17,6 +17,7 @@ type PropsType = {
   onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
   citiesListLoading: boolean;
   citiesList: CityType[];
+  savedCitiesList: CityType[];
   onCityClick: (id: number) => void;
   onAddCityClick: (id: number) => void;
 };
@@ -28,6 +29,7 @@ const SearchModal = ({
   onInputChange,
   citiesListLoading,
   citiesList,
+  savedCitiesList,
   onCityClick,
   onAddCityClick,
 }: PropsType) => (
@@ -48,6 +50,7 @@ const SearchModal = ({
           <City
             key={city.lat}
             {...city}
+            savedCitiesList={savedCitiesList}
             onCityClick={onCityClick}
             onAddCityClick={onAddCityClick}
           />

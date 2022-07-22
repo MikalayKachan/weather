@@ -1,74 +1,59 @@
 import React from 'react';
 
+import { NavLink } from 'react-router-dom';
+
 import User from 'assets/icons/User.png';
 import Home from 'assets/icons/Home.svg';
 import Search from 'assets/icons/Search.svg';
+import Delete from 'assets/icons/Delete.svg';
 import Settings from 'assets/icons/Settings.png';
+
+import { ROUTES } from 'constants/routes';
 
 import { IconButton } from 'components/shared/IconButton';
 import { Typography } from 'components/shared/Typography';
 
+import { CityType } from 'components/SideMenu/components/SearchModal/SearchModal.container';
+
 import styles from './SideMenu.module.scss';
 
 type PropsType = {
+  cities: CityType[];
   onSearchClick: () => void;
+  onCityClick: (lat: number, lon: number) => void;
+  onDeleteCityClick: (lat: number) => void;
 };
 
-const cities = [
-  'Ambriz',
-  'Ambriz',
-  'Bengo',
-  'Bié',
-  'Huambo',
-  'Huambo carlos del city',
-  'Bengo',
-  'Bié',
-  'Huambo',
-  'Huambo carlos del city',
-  'Ambriz',
-  'Ambriz',
-  'Bengo',
-  'Bié',
-  'Huambo',
-  'Huambo carlos del city',
-  'Bengo',
-  'Bié',
-  'Huambo',
-  'Huambo carlos del city',
-  'Ambriz',
-  'Bengo',
-  'Bié',
-  'Huambo',
-  'Huambo carlos del city',
-  'Bengo',
-  'Bié',
-  'Huambo',
-  'Huambo carlos del city',
-  'Ambriz',
-  'Ambriz',
-  'Bengo',
-  'Bié',
-  'Huambo',
-  'Huambo carlos del city',
-  'Bengo',
-  'Bié',
-  'Huambo',
-  'Huambo carlos del city',
-];
-
-const SideMenu = ({ onSearchClick }: PropsType) => {
+const SideMenu = ({
+  cities,
+  onSearchClick,
+  onCityClick,
+  onDeleteCityClick,
+}: PropsType) => {
   return (
     <div className={styles.sideMenu}>
       <div className={styles.iconsLine}>
-        <IconButton icon={Home} />
+        <NavLink to={ROUTES.ROOT}>
+          <IconButton icon={Home} />
+        </NavLink>
         <IconButton icon={Search} onClick={onSearchClick} />
       </div>
       <div className={styles.cities}>
-        {cities.map((city, index) => (
-          <div key={index} className={styles.cityContainer}>
-            <Typography className={styles.city} variant={'h5'}>
-              {city}
+        {cities.map((city) => (
+          <div key={city.lat} className={styles.cityContainer}>
+            <Typography
+              className={styles.city}
+              variant={'h5'}
+              onClick={() => onCityClick(city.lat, city.lon)}
+            >
+              {city.name}
             </Typography>
+            <IconButton
+              icon={Delete}
+              buttonStyle={styles.deleteButton}
+              iconStyle={styles.deleteIcon}
+              onClick={() => onDeleteCityClick(city.lat)}
+            />
           </div>
         ))}
       </div>
