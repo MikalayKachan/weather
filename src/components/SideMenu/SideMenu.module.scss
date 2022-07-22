@@ -24,6 +24,8 @@
 }
 
 .cityContainer {
+  display: flex;
+  justify-content: center;
   outline: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.288);
   padding: 10px 0;
@@ -35,4 +37,13 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.deleteButton {
+  border: none;
+}
+
+.deleteIcon {
+  height: 18px;
+  width: 18px;
 }
