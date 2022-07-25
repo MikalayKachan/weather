@@ -13,7 +13,7 @@ import currentWeatherIcon from 'assets/svg/WeatherIcon-2-40.svg';
 import styles from './CityPage.module.scss';
 import { Layout } from 'components/Layout';
 
-type CityPagePropsType = {
+export type CityPagePropsType = {
   currentTemp: number | undefined;
   humidity: number | undefined;
   windSpeed: number | undefined;
