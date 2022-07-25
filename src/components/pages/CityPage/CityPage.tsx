@@ -1,15 +1,18 @@
 import React from 'react';
 
-import { Typography } from 'components/shared/Typography';
-import ForecastElement from './components/ForecastElement/ForecastElement';
-import CurrentWeatherElement from './components/CurrentWeatherElement/CurrentWeatherElement';
-
-import windIcon from 'assets/svg/WindIcon.svg';
 import humIcon from 'assets/svg/HumIcon.svg';
+import windIcon from 'assets/svg/WindIcon.svg';
 import rainIcon from 'assets/svg/RainIcon.svg';
 
-import styles from './CityPage.module.scss';
+import { Loader } from 'components/shared/Loader';
+import { Typography } from 'components/shared/Typography';
+
 import { Layout } from 'components/Layout';
+import { CurrentWeatherElement } from 'components/CurrentWeatherElement';
+
+import { ForecastElement } from './components/ForecastElement';
+
+import styles from './CityPage.module.scss';
 
 type ForecastWeatherForRenderItemType = {
   key: number;
@@ -19,19 +22,21 @@ type ForecastWeatherForRenderItemType = {
 };
 
 export type CityPagePropsType = {
-  currentTemp: number | undefined;
-  humidity: number | undefined;
-  windSpeed: number | undefined;
-  clouds: number | undefined;
-  name: string | undefined;
-  date: string | undefined;
-  day: string | undefined;
-  time: string | undefined;
-  weatherIcon: string | undefined;
-  forecastWeatherForRender: Array<ForecastWeatherForRenderItemType> | undefined;
+  loading: boolean;
+  currentTemp: number;
+  humidity: number;
+  windSpeed: number;
+  clouds: number;
+  name: string;
+  date: string;
+  day: string;
+  time: string;
+  weatherIcon: string;
+  forecastWeatherForRender: Array<ForecastWeatherForRenderItemType>;
 };
 
 const CityPage = ({
+  loading,
   currentTemp,
   humidity,
   windSpeed,
@@ -42,15 +47,11 @@ const CityPage = ({
   time,
   weatherIcon,
   forecastWeatherForRender,
-}: CityPagePropsType) => {
-  const currentWeather = [
-    { id: '1', icon: windIcon, text: `Wind ${windSpeed} m/s` },
-    { id: '2', icon: humIcon, text: `Hum ${humidity}  %` },
-    { id: '3', icon: rainIcon, text: `Clouds ${clouds} %` },
-  ];
-
-  return (
-    <Layout>
+}: CityPagePropsType) => (
+  <Layout>
+    {loading ? (
+      <Loader />
+    ) : (
       <div className={styles.main}>
         <div className={styles.data}>
           <div className={styles.weatherIconBlock}>
@@ -82,33 +83,31 @@ const CityPage = ({
             {day} | {time}
           </Typography>
           <div className={styles.currentWeatherBlock}>
-            {currentWeather.map((element) => {
-              return (
-                <CurrentWeatherElement
-                  key={element.id}
-                  icon={element.icon}
-                  text={element.text}
-                />
-              );
-            })}
+            <CurrentWeatherElement
+              icon={windIcon}
+              text={`Wind ${windSpeed} m/s`}
+            />
+            <CurrentWeatherElement icon={humIcon} text={`Hum ${humidity}  %`} />
+            <CurrentWeatherElement
+              icon={rainIcon}
+              text={`Clouds ${clouds} %`}
+            />
           </div>
           <div className={styles.forecastBlock}>
             {forecastWeatherForRender &&
-              forecastWeatherForRender.map((day) => {
-                return (
-                  <ForecastElement
-                    key={day.key}
-                    temp={day.temp}
-                    icon={day.clouds}
-                    day={day.day}
-                  />
-                );
-              })}
+              forecastWeatherForRender.map((day) => (
+                <ForecastElement
+                  key={day.key}
+                  temp={day.temp}
+                  icon={day.clouds}
+                  day={day.day}
+                />
+              ))}
           </div>
         </div>
       </div>
-    </Layout>
-  );
-};
+    )}
+  </Layout>
+);
 
 export default CityPage;

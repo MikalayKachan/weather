@@ -1,1 +1,1 @@
-export { default as CityPage } from './CityPageContainer';
+export { default as CityPage } from './CityPage.container';

@@ -7,8 +7,9 @@ import currentWeatherIcon from 'assets/svg/NightCloudsMiddle.svg';
 
 import { Loader } from 'components/shared/Loader';
 import { Typography } from 'components/shared/Typography';
+
 import { Layout } from 'components/Layout';
-import CurrentWeatherElement from 'components/pages/CityPage/components/CurrentWeatherElement/CurrentWeatherElement';
+import { CurrentWeatherElement } from 'components/CurrentWeatherElement';
 
 import styles from './HomePage.module.css';
 

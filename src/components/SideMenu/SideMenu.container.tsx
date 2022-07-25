@@ -45,7 +45,7 @@ const SideMenuContainer = () => {
 
   useEffect(() => {
     const JSONCities = localStorage.getItem('savedCities');
-    const citiesFromStorage = JSONCities && JSON.parse(JSONCities);
+    const citiesFromStorage = (JSONCities && JSON.parse(JSONCities)) || [];
     const updatedCitiesForStorage = citiesFromStorage.filter(
       (city: CityType) => city.lat !== latOfCityToDelete,
     );
