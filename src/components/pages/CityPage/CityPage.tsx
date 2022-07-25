@@ -7,13 +7,18 @@ import CurrentWeatherElement from './components/CurrentWeatherElement/CurrentWea
 import windIcon from 'assets/svg/WindIcon.svg';
 import humIcon from 'assets/svg/HumIcon.svg';
 import rainIcon from 'assets/svg/RainIcon.svg';
-import forecastWeatherIcon from 'assets/svg/WeatherIcon-2-39.svg';
-import currentWeatherIcon from 'assets/svg/WeatherIcon-2-40.svg';
 
 import styles from './CityPage.module.scss';
 import { Layout } from 'components/Layout';
 
-export type CityPagePropsType = {
+type ForecastWeatherForRenderItemType = {
+  key: number;
+  day: string;
+  temp: number;
+  clouds: string;
+};
+
+type CityPagePropsType = {
   currentTemp: number | undefined;
   humidity: number | undefined;
   windSpeed: number | undefined;
@@ -22,6 +27,8 @@ export type CityPagePropsType = {
   date: string | undefined;
   day: string | undefined;
   time: string | undefined;
+  weatherIcon: string | undefined;
+  forecastWeatherForRender: Array<ForecastWeatherForRenderItemType> | undefined;
 };
 
 const CityPage = ({
@@ -33,6 +40,8 @@ const CityPage = ({
   date,
   day,
   time,
+  weatherIcon,
+  forecastWeatherForRender,
 }: CityPagePropsType) => {
   const currentWeather = [
     { id: '1', icon: windIcon, text: `Wind ${windSpeed} m/s` },
@@ -40,23 +49,12 @@ const CityPage = ({
     { id: '3', icon: rainIcon, text: `Clouds ${clouds} %` },
   ];
 
-  const forecastWeather = [
-    { id: '1', temp: '24°C', icon: forecastWeatherIcon, day: 'Thu' },
-    { id: '2', temp: '25°C', icon: forecastWeatherIcon, day: 'Fri' },
-    { id: '3', temp: '25°C', icon: forecastWeatherIcon, day: 'Sat' },
-    { id: '4', temp: '27°C', icon: forecastWeatherIcon, day: 'Sun' },
-    { id: '5', temp: '25°C', icon: forecastWeatherIcon, day: 'Mon' },
-  ];
-
   return (
     <Layout>
       <div className={styles.main}>
         <div className={styles.data}>
           <div className={styles.weatherIconBlock}>
-            <img
-              className={styles.currentWeatherIcon}
-              src={currentWeatherIcon}
-            />
+            <img className={styles.currentWeatherIcon} src={weatherIcon} />
           </div>
           <div className={styles.currentCityWeatherBlock}>
             <div className={styles.currentTemperatureBlock}>
@@ -95,16 +93,17 @@ const CityPage = ({
             })}
           </div>
           <div className={styles.forecastBlock}>
-            {forecastWeather.map((day) => {
-              return (
-                <ForecastElement
-                  key={day.id}
-                  temp={day.temp}
-                  icon={day.icon}
-                  day={day.day}
-                />
-              );
-            })}
+            {forecastWeatherForRender &&
+              forecastWeatherForRender.map((day) => {
+                return (
+                  <ForecastElement
+                    key={day.key}
+                    temp={day.temp}
+                    icon={day.clouds}
+                    day={day.day}
+                  />
+                );
+              })}
           </div>
         </div>
       </div>

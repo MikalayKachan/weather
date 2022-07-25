@@ -6,6 +6,20 @@ import { useFetch } from 'hooks/useFetch';
 import { API } from 'api/api';
 import CityPage from './CityPage';
 
+import DayCloudsLow from 'assets/svg/DayCloudsLow.svg';
+import DayCloudsMiddle from 'assets/svg/DayCloudsMiddle.svg';
+import DayCloudsHigh from 'assets/svg/DayCloudsHigh.svg';
+//import NightCloudsLow from 'assets/svg/NightCloudsLow.svg';
+//import NightCloudsMiddle from 'assets/svg/NightCloudsMiddle.svg';
+//import NightCloudsHigh from 'assets/svg/NightCloudsHigh.svg';
+
+type ForecastWeatherForRenderItemType = {
+  key: number;
+  day: string;
+  temp: number;
+  clouds: string;
+};
+
 const CityPageContainer = () => {
   const query = useQuery();
   const lat = query.get('lat');
@@ -44,10 +58,7 @@ const CityPageContainer = () => {
     ) as unknown as { loading: boolean; data: any };
 
   console.log('currentWeatherLoading', currentWeatherLoading);
-  console.log('currentWeatherData', currentWeatherData);
-
   console.log('forecastWeatherLoading', forecastWeatherLoading);
-  console.log('forecastWeatherData', forecastWeatherData);
 
   let currentTemp;
   let humidity;
@@ -57,8 +68,11 @@ const CityPageContainer = () => {
   let date;
   let day;
   let time;
+  let weatherIcon;
 
   let currentDate;
+
+  let forecastWeatherForRender = [] as Array<ForecastWeatherForRenderItemType>;
 
   const dateWithUTC = (timezone: number) => {
     let dateUTC = new Date().toString();
@@ -89,9 +103,41 @@ const CityPageContainer = () => {
       timeZone: 'UTC',
       timeStyle: 'short',
     });
-  }
 
-  console.log('currentTemp', currentTemp);
+    const cloudsIcon = (clouds: number) => {
+      if (clouds < 33) {
+        return DayCloudsLow;
+      }
+      if (clouds >= 33 && clouds < 66) {
+        return DayCloudsMiddle;
+      }
+      if (clouds > 66) {
+        return DayCloudsHigh;
+      }
+      return 'error';
+    };
+
+    weatherIcon = cloudsIcon(clouds);
+
+    const forecastWeatherArr = [];
+    if (forecastWeatherData) {
+      for (let i = 0; i < forecastWeatherData.list.length; i++) {
+        if (forecastWeatherData.list[i].dt_txt.includes('12:00:00')) {
+          forecastWeatherArr.push(forecastWeatherData.list[i]);
+        }
+      }
+    }
+
+    forecastWeatherForRender = forecastWeatherArr.map((w) => ({
+      key: w.dt,
+      day: new Date(w.dt_txt).toLocaleString('en-GB', {
+        timeZone: 'UTC',
+        weekday: 'long',
+      }),
+      temp: Math.round(Number(w.main.temp)),
+      clouds: cloudsIcon(w.clouds.all),
+    }));
+  }
 
   return (
     <CityPage
@@ -103,6 +149,8 @@ const CityPageContainer = () => {
       date={date}
       day={day}
       time={time}
+      weatherIcon={weatherIcon}
+      forecastWeatherForRender={forecastWeatherForRender}
     />
   );
 };
