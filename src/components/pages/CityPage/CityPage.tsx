@@ -18,7 +18,7 @@ type ForecastWeatherForRenderItemType = {
   clouds: string;
 };
 
-type CityPagePropsType = {
+export type CityPagePropsType = {
   currentTemp: number | undefined;
   humidity: number | undefined;
   windSpeed: number | undefined;

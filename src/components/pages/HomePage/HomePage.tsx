@@ -3,12 +3,11 @@ import React from 'react';
 import humIcon from 'assets/svg/HumIcon.svg';
 import rainIcon from 'assets/svg/RainIcon.svg';
 import windIcon from 'assets/svg/WindIcon.svg';
-import currentWeatherIcon from 'assets/svg/WeatherIcon-2-40.svg';
+import currentWeatherIcon from 'assets/svg/NightCloudsMiddle.svg';
 
 import { Loader } from 'components/shared/Loader';
 import { Typography } from 'components/shared/Typography';
 import { Layout } from 'components/Layout';
-import { CityPagePropsType } from 'components/pages/CityPage/CityPage';
 import CurrentWeatherElement from 'components/pages/CityPage/components/CurrentWeatherElement/CurrentWeatherElement';
 
 import styles from './HomePage.module.css';
@@ -16,7 +15,15 @@ import styles from './HomePage.module.css';
 type HomePagePropsType = {
   locatingStatus: string;
   currentWeatherLoading: boolean;
-} & CityPagePropsType;
+  currentTemp: number | undefined;
+  humidity: number | undefined;
+  windSpeed: number | undefined;
+  clouds: number | undefined;
+  name: string | undefined;
+  date: string | undefined;
+  day: string | undefined;
+  time: string | undefined;
+};
 
 const HomePage = ({
   locatingStatus,
