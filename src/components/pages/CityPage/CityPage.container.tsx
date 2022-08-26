@@ -45,6 +45,8 @@ const CityPageContainer = () => {
 
   const loading = currentWeatherLoading || forecastWeatherLoading;
 
+  console.log(currentWeatherData);
+
   const weatherData =
     !loading &&
     currentWeatherData &&

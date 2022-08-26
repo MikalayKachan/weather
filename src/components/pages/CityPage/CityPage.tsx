@@ -22,6 +22,7 @@ type ForecastWeatherForRenderItemType = {
 };
 
 export type CityPagePropsType = {
+  isDay: boolean;
   loading: boolean;
   currentTemp: number;
   humidity: number;
@@ -36,6 +37,7 @@ export type CityPagePropsType = {
 };
 
 const CityPage = ({
+  isDay,
   loading,
   currentTemp,
   humidity,
@@ -48,7 +50,7 @@ const CityPage = ({
   weatherIcon,
   forecastWeatherForRender,
 }: CityPagePropsType) => (
-  <Layout>
+  <Layout day={isDay}>
     {loading ? (
       <Loader />
     ) : (
