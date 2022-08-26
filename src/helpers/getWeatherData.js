@@ -2,7 +2,11 @@ import DayCloudsLow from 'assets/svg/DayCloudsLow.svg';
 import DayCloudsMiddle from 'assets/svg/DayCloudsMiddle.svg';
 import DayCloudsHigh from 'assets/svg/DayCloudsHigh.svg';
 
-const getDateValues = (timezone: number) => {
+import NightCloudsLow from 'assets/svg/NightCloudsLow.svg';
+import NightCloudsMiddle from 'assets/svg/NightCloudsMiddle.svg';
+import NightCloudsHigh from 'assets/svg/NightCloudsHigh.svg';
+
+const getDateValues = (timezone) => {
   let dateUTC = new Date().toString();
 
   let dateInMiliSeconds = Date.parse(dateUTC);
@@ -29,19 +33,35 @@ const getDateValues = (timezone: number) => {
   return { date, day, time };
 };
 
-const getCloudsIcon = (clouds) => {
-  switch (true) {
-    case clouds < 33: {
-      return DayCloudsLow;
+const getCloudsIcon = (clouds, isDay) => {
+  if (isDay) {
+    switch (true) {
+      case clouds < 33: {
+        return DayCloudsLow;
+      }
+      case clouds >= 33 && clouds < 66: {
+        return DayCloudsMiddle;
+      }
+      case clouds >= 66: {
+        return DayCloudsHigh;
+      }
+      default:
+        return 'error';
     }
-    case clouds >= 33 && clouds < 66: {
-      return DayCloudsMiddle;
+  } else {
+    switch (true) {
+      case clouds < 33: {
+        return NightCloudsLow;
+      }
+      case clouds >= 33 && clouds < 66: {
+        return NightCloudsMiddle;
+      }
+      case clouds >= 66: {
+        return NightCloudsHigh;
+      }
+      default:
+        return 'error';
     }
-    case clouds >= 66: {
-      return DayCloudsHigh;
-    }
-    default:
-      return 'error';
   }
 };
 
@@ -57,7 +77,7 @@ const getForecastData = (forecastWeatherData) => {
       weekday: 'long',
     }),
     temp: Math.round(Number(w.main.temp)),
-    clouds: getCloudsIcon(w.clouds.all),
+    clouds: getCloudsIcon(w.clouds.all, true),
   }));
 
   return forecastWeatherForRender;
@@ -71,13 +91,25 @@ export const getWeatherData = (currentWeatherData, forecastWeatherData) => {
   const windSpeed = currentWeatherData.wind.speed;
   const clouds = currentWeatherData.clouds.all;
   const name = currentWeatherData.name;
-
-  const weatherIcon = getCloudsIcon(clouds);
+  let isDay;
 
   const forecastWeatherForRender =
     forecastWeatherData && getForecastData(forecastWeatherData);
 
+  const sunrise = currentWeatherData.sys.sunrise;
+  const sunset = currentWeatherData.sys.sunset;
+  const now = currentWeatherData.dt;
+
+  if (now >= sunrise && now < sunset) {
+    isDay = true;
+  } else {
+    isDay = false;
+  }
+
+  const weatherIcon = getCloudsIcon(clouds, isDay);
+
   return {
+    isDay,
     currentTemp,
     humidity,
     windSpeed,

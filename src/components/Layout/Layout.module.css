@@ -1,9 +1,17 @@
-.layout {
+.layoutDay {
   display: flex;
   flex-direction: row nowrap;
   width: 100%;
   height: 100vh;
   background: linear-gradient(to top right, #ff9696 0%, #8c6bae);
+}
+
+.layoutNight {
+  display: flex;
+  flex-direction: row nowrap;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to top right, #48355b 0%, #8c6eab);
 }
 
 .inner {

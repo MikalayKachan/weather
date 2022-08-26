@@ -3,7 +3,6 @@ import React from 'react';
 import humIcon from 'assets/svg/HumIcon.svg';
 import rainIcon from 'assets/svg/RainIcon.svg';
 import windIcon from 'assets/svg/WindIcon.svg';
-import currentWeatherIcon from 'assets/svg/NightCloudsMiddle.svg';
 
 import { Loader } from 'components/shared/Loader';
 import { Typography } from 'components/shared/Typography';
@@ -14,6 +13,7 @@ import { CurrentWeatherElement } from 'components/CurrentWeatherElement';
 import styles from './HomePage.module.css';
 
 type HomePagePropsType = {
+  isDay: boolean;
   locatingStatus: string;
   currentWeatherLoading: boolean;
   currentTemp: number | undefined;
@@ -24,9 +24,11 @@ type HomePagePropsType = {
   date: string | undefined;
   day: string | undefined;
   time: string | undefined;
+  weatherIcon: string;
 };
 
 const HomePage = ({
+  isDay,
   locatingStatus,
   currentWeatherLoading,
   currentTemp,
@@ -37,6 +39,7 @@ const HomePage = ({
   date,
   day,
   time,
+  weatherIcon,
 }: HomePagePropsType) => {
   const currentWeather = [
     { id: '1', icon: windIcon, text: `Wind ${windSpeed} m/s` },
@@ -45,7 +48,7 @@ const HomePage = ({
   ];
 
   return (
-    <Layout>
+    <Layout day={isDay}>
       <div className={styles.main}>
         {currentWeatherLoading ? (
           <Loader className={styles.loader} />
@@ -56,10 +59,7 @@ const HomePage = ({
             </Typography>
             <div className={styles.data}>
               <div className={styles.weatherIconBlock}>
-                <img
-                  className={styles.currentWeatherIcon}
-                  src={currentWeatherIcon}
-                />
+                <img className={styles.currentWeatherIcon} src={weatherIcon} />
               </div>
               <div className={styles.currentCityWeatherBlock}>
                 <div className={styles.currentTemperatureBlock}>
