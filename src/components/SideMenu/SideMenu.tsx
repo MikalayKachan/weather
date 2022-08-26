@@ -2,11 +2,9 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import User from 'assets/icons/User.png';
 import Home from 'assets/icons/Home.svg';
 import Search from 'assets/icons/Search.svg';
 import Delete from 'assets/icons/Delete.svg';
-import Settings from 'assets/icons/Settings.png';
 
 import { ROUTES } from 'constants/routes';
 
@@ -16,6 +14,7 @@ import { Typography } from 'components/shared/Typography';
 import { CityType } from 'components/SideMenu/components/SearchModal/SearchModal.container';
 
 import styles from './SideMenu.module.scss';
+import Toggle from 'components/shared/Toggle/Toggle';
 
 type PropsType = {
   cities: CityType[];
@@ -58,8 +57,7 @@ const SideMenu = ({
         ))}
       </div>
       <div className={styles.iconsLine}>
-        <IconButton icon={User} />
-        <IconButton icon={Settings} />
+        <Toggle />
       </div>
     </div>
   );

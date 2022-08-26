@@ -1,0 +1,170 @@
+:root {
+  /*Background color when it's turned off*/
+  --vc-off-color: #d1d3d4;
+
+  /*Background color when it's turned on*/
+  --vc-on-color: #38cf5b;
+  
+  /*Animation speed and type*/
+  --vc-animation-speed: 0.15s ease-out;
+
+  /*Font used by the text*/
+  --vc-font-family: Arial;
+
+  /*The size used*/
+  --vc-font-size: 11px;
+
+  /*The font weight*/
+  --vc-font-weight: 300;
+  
+  /*Font color when the switch is on*/
+  --vc-on-font-color: white;
+
+  /*Font color when the switch is off*/
+  --vc-off-font-color: white;
+
+  /*How far the OFF text is from the right side*/
+  --vc-label-position-off: 12px;
+
+  /*How far the ON text is from the left side*/
+  --vc-label-position-on: 11px;
+
+  /*Small switch width*/
+  --vc-width: 60px;
+
+  /*Small switch height*/
+  --vc-height: 25px;
+
+  /*Border radius for the handle*/
+  --vc-handle-border-radius: 20px;
+
+  /*Border radius for the box*/
+  --vc-box-border-radius: 18px;
+
+  /*Shadow for the handle*/
+  --vc-handle-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  
+  /*Handle color*/
+  --vc-handle-color: white;
+
+  /*Handle width*/
+  --vc-handle-width: 15px;
+
+  /*Handle height*/
+  --vc-handle-height: 15px;
+
+  /*The handle's width while the toggle is clicked*/
+  --vc-onclick-width: 30px;
+
+  /*Handle's distance from the top*/
+  --vc-handle-top: 5px;
+}
+
+.vcToggleContainer * {
+  font-family: var(--vc-font-family);
+  -webkit-transition: var(--vc-animation-speed);
+  -moz-transition: var(--vc-animation-speed);
+  -o-transition: var(--vc-animation-speed);
+  transition: var(--vc-animation-speed);
+}
+
+.vcSwitch {
+  width: var(--vc-width);
+  height: var(--vc-height);
+}
+
+.vcToggleContainer label {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: var(--vc-box-border-radius);
+  cursor: pointer;
+}
+
+.vcSwitchInput {
+  position: absolute;
+  transform: translate3d(5px, 5px, 0);
+}
+
+.vcSwitchLabel {
+  position: relative;
+  display: block;
+  height: inherit;
+  font-size: var(--vc-font-size);
+  font-weight: var(--vc-font-weight);
+  background: var(--vc-off-color);
+  border-radius: inherit;
+}
+
+.vcSwitchLabel:before,
+.vcSwitchLabel:after {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  line-height: 1.1;
+}
+
+.vcSwitchLabel:before {
+  content: attr(data-off);
+  color: var(--vc-on-font-color);
+}
+
+.vcSwitchLabel:after {
+  content: attr(data-on);
+  color: var(--vc-off-font-color);
+  opacity: 0;
+}
+
+.vcSwitchLabel:before {
+  right: var(--vc-label-position-off);;
+}
+
+.vcSwitchLabel:after {
+  left: var(--vc-label-position-on);;
+}
+
+.vcSwitchInput:checked ~ .vcSwitchLabel {
+  background: var(--vc-on-color);
+}
+
+.vcSwitchInput:checked ~ .vcSwitchLabel:before {
+  opacity: 0;
+}
+
+.vcSwitchInput:checked ~ .vcSwitchLabel:after {
+  opacity: 1;
+}
+
+.vcHandle {
+  position: absolute !important;
+  top: var(--vc-handle-top);
+  left: 5px;
+  background: var(--vc-handle-color);
+  border-radius: var(--vc-handle-border-radius);
+  box-shadow: var(--vc-handle-shadow);
+}
+
+.vcHandle {
+  width: var(--vc-handle-width);
+  height: var(--vc-handle-height);
+}
+
+.vcHandle:before {
+  content: "";
+  top: 50%;
+  left: 50%;
+  position: absolute !important;
+  margin: -6px 0 0 -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+}
+
+.vcSwitchLabel:active ~ .vcHandle, .vcHandle:active {
+  width: var(--vc-onclick-width);
+}
+
+.vcSwitchInput:checked ~ .vcHandle {
+  left: unset;
+  right: 5px;
+}
