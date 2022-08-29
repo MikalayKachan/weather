@@ -1,23 +1,45 @@
 import React from 'react';
 import styles from './Toggle.module.scss';
 
-const Toggle = () => {
+type PropsType = {
+  isAutoThemeMode: boolean;
+  themeModeHandler: () => void;
+  isDayTheme: boolean;
+  dayModeHandler: () => void;
+};
+
+const Toggle = ({
+  isAutoThemeMode,
+  themeModeHandler,
+  isDayTheme,
+  dayModeHandler,
+}: PropsType) => {
   return (
-    <div className={styles.vcToggleContainer}>
-      <label className={styles.vcSwitch}>
-        <input
-          type="checkbox"
-          className={styles.vcSwitchInput}
-          //checked={props.isChecked}
-        />
-        <span
-          className={styles.vcSwitchLabel}
-          data-on="Day"
-          data-off="Night"
-        ></span>
-        <span className={styles.vcHandle}></span>
-      </label>
-    </div>
+    <>
+      <input
+        type="checkbox"
+        checked={isAutoThemeMode}
+        onChange={themeModeHandler}
+      />
+      {isAutoThemeMode && <span>Auto</span>}
+      <div className={styles.vcToggleContainer}>
+        <label className={styles.vcSwitch}>
+          <input
+            type="checkbox"
+            className={styles.vcSwitchInput}
+            checked={isDayTheme}
+            onChange={dayModeHandler}
+            disabled={isAutoThemeMode}
+          />
+          <span
+            className={styles.vcSwitchLabel}
+            data-on="Day"
+            data-off="Night"
+          ></span>
+          <span className={styles.vcHandle}></span>
+        </label>
+      </div>
+    </>
   );
 };
 
