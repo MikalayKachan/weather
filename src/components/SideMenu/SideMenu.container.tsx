@@ -9,7 +9,19 @@ import { SearchModal } from './components/SearchModal';
 
 import { CityType } from 'components/SideMenu/components/SearchModal/SearchModal.container';
 
-const SideMenuContainer = () => {
+type PropsType = {
+  isAutoThemeMode: boolean;
+  themeModeHandler: () => void;
+  isDayTheme: boolean;
+  dayModeHandler: () => void;
+};
+
+const SideMenuContainer = ({
+  isAutoThemeMode,
+  themeModeHandler,
+  isDayTheme,
+  dayModeHandler,
+}: PropsType) => {
   const [cities, setCities] = useState([]);
   const [latOfCityToDelete, setLatOfCityToDelete] = useState<number | null>(
     null,
@@ -63,6 +75,10 @@ const SideMenuContainer = () => {
         onSearchClick={handleSearchClick}
         onCityClick={handleCityClick}
         onDeleteCityClick={handleDeleteCityClick}
+        isAutoThemeMode={isAutoThemeMode}
+        themeModeHandler={themeModeHandler}
+        isDayTheme={isDayTheme}
+        dayModeHandler={dayModeHandler}
       />
       <SearchModal
         isSearchModalOpen={isSearchModalOpen}
