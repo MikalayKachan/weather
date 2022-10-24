@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './Toggle.module.scss';
+import { AppContext } from 'helpers/context';
 
 type PropsType = {
   isAutoThemeMode: boolean;
   themeModeHandler: () => void;
-  isDayTheme: boolean;
-  dayModeHandler: () => void;
 };
 
-const Toggle = ({
-  isAutoThemeMode,
-  themeModeHandler,
-  isDayTheme,
-  dayModeHandler,
-}: PropsType) => {
+const Toggle = ({ isAutoThemeMode, themeModeHandler }: PropsType) => {
+  const { state, dispatch } = useContext(AppContext);
+
+  const onToggleChange = () => {
+    dispatch({ type: 'SET_DAY_THEME', payload: !state.isDayTheme });
+  };
+
   return (
     <>
       <input
@@ -27,8 +27,8 @@ const Toggle = ({
           <input
             type="checkbox"
             className={styles.vcSwitchInput}
-            checked={isDayTheme}
-            onChange={dayModeHandler}
+            checked={state.isDayTheme}
+            onChange={onToggleChange}
             disabled={isAutoThemeMode}
           />
           <span
