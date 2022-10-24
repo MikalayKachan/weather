@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { CONSTANTS } from 'constants/common';
 
@@ -13,7 +13,7 @@ import CityPage from './CityPage';
 import { AppContext } from 'helpers/context';
 
 const CityPageContainer = () => {
-  const { state, dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
 
   const query = useQuery();
   const lat = query.get('lat');
@@ -48,18 +48,18 @@ const CityPageContainer = () => {
 
   const loading = currentWeatherLoading || forecastWeatherLoading;
 
-  console.log(currentWeatherData);
-
   const weatherData =
     !loading &&
     currentWeatherData &&
     forecastWeatherData &&
     getWeatherData(currentWeatherData, forecastWeatherData);
 
-  weatherData &&
-    dispatch({ type: 'SET_DAY_THEME_API', payload: weatherData.isDay });
-  weatherData &&
-    dispatch({ type: 'SET_DAY_THEME', payload: weatherData.isDay });
+  const isDay = weatherData && weatherData.isDay;
+
+  useEffect(() => {
+    dispatch({ type: 'SET_DAY_THEME_API', payload: isDay });
+    dispatch({ type: 'SET_DAY_THEME', payload: isDay });
+  }, [isDay]);
 
   return <CityPage loading={loading} {...weatherData} />;
 };

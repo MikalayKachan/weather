@@ -13,7 +13,6 @@ import { CurrentWeatherElement } from 'components/CurrentWeatherElement';
 import styles from './HomePage.module.css';
 
 type HomePagePropsType = {
-  isDay: boolean;
   locatingStatus: string;
   currentWeatherLoading: boolean;
   currentTemp: number | undefined;
@@ -28,7 +27,6 @@ type HomePagePropsType = {
 };
 
 const HomePage = ({
-  isDay,
   locatingStatus,
   currentWeatherLoading,
   currentTemp,
@@ -48,7 +46,7 @@ const HomePage = ({
   ];
 
   return (
-    <Layout day={isDay}>
+    <Layout>
       <div className={styles.main}>
         {currentWeatherLoading ? (
           <Loader className={styles.loader} />

@@ -17,7 +17,6 @@ type PropsType = {
 const SideMenuContainer = ({
   isAutoThemeMode,
   themeModeHandler,
-
 }: PropsType) => {
   const [cities, setCities] = useState([]);
   const [latOfCityToDelete, setLatOfCityToDelete] = useState<number | null>(

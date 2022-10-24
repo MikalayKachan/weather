@@ -89,7 +89,6 @@ const SearchModalContainer = ({ isSearchModalOpen, onClose }: PropsType) => {
           JSON.stringify([...citiesFromStorage, cityToSave]),
         );
     }
-    cityToSave && console.log([...citiesFromStorage, cityToSave]);
     cityToSave && setSavedCitiesList([...citiesFromStorage, cityToSave]);
   }, [cityToSave]);
 

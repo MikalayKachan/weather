@@ -91,20 +91,19 @@ export const getWeatherData = (currentWeatherData, forecastWeatherData) => {
   const windSpeed = currentWeatherData.wind.speed;
   const clouds = currentWeatherData.clouds.all;
   const name = currentWeatherData.name;
+
   let isDay;
-
-  const forecastWeatherForRender =
-    forecastWeatherData && getForecastData(forecastWeatherData);
-
   const sunrise = currentWeatherData.sys.sunrise;
   const sunset = currentWeatherData.sys.sunset;
   const now = currentWeatherData.dt;
-
   if (now >= sunrise && now < sunset) {
     isDay = true;
   } else {
     isDay = false;
   }
+
+  const forecastWeatherForRender =
+    forecastWeatherData && getForecastData(forecastWeatherData);
 
   const weatherIcon = getCloudsIcon(clouds, isDay);
 

@@ -13,29 +13,13 @@ type PropsType = {
 const Layout = ({ children }: PropsType) => {
   const { state, dispatch } = useContext(AppContext);
 
-  const [isAutoThemeMode, setIsAutoThemeMode] = useState(true); //checkbox
-  //const [isDayTheme, setIsDayTheme] = useState(true); //toggle
-
+  const [isAutoThemeMode, setIsAutoThemeMode] = useState(true);
   const themeModeHandler = () => {
     if (!isAutoThemeMode) {
       dispatch({ type: 'SET_DAY_THEME', payload: state.isDayThemeAPI });
     }
     setIsAutoThemeMode(!isAutoThemeMode);
   };
-
-  // const dayModeHandler = () => {
-  //   setIsDayTheme(!isDayTheme);
-  // };
-
-  // const getTheme = (
-  //   day: boolean | undefined,
-  //   isAutoThemeMode: boolean,
-  //   isDayTheme: boolean,
-  // ) => {
-  //   return isAutoThemeMode ? day : isDayTheme;
-  // };
-  //
-  // const theme = getTheme(day, isAutoThemeMode, isDayTheme);
 
   return (
     <div className={state.isDayTheme ? styles.layoutDay : styles.layoutNight}>
