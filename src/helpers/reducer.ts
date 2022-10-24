@@ -9,7 +9,7 @@ export type SetDayThemeActionType = {
   payload: boolean;
 };
 
-export type ActionsType = SetDayThemeAPIActionType | SetDayThemeActionType
+export type ActionsType = SetDayThemeAPIActionType | SetDayThemeActionType;
 
 export const reducer = (state: StateType, action: ActionsType) => {
   switch (action.type) {

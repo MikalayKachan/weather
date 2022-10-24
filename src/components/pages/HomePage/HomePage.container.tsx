@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import { CONSTANTS } from 'constants/common';
 
@@ -10,7 +10,11 @@ import { useFetch } from 'hooks/useFetch';
 
 import HomePage from './HomePage';
 
+import { AppContext } from 'helpers/context';
+
 const HomePageContainer = () => {
+  const { dispatch } = useContext(AppContext);
+
   const [locatingStatus, setLocatingStatus] = useState('');
   const [coordinate, setCoordinate] = useState<[number, number]>([0, 0]);
 
@@ -63,6 +67,13 @@ const HomePageContainer = () => {
     !currentWeatherLoading &&
     currentWeatherData &&
     getWeatherData(currentWeatherData);
+
+  const isDay = weatherData && weatherData.isDay;
+
+  useEffect(() => {
+    dispatch({ type: 'SET_DAY_THEME_API', payload: isDay });
+    dispatch({ type: 'SET_DAY_THEME', payload: isDay });
+  }, [isDay]);
 
   return <HomePage locatingStatus={locatingStatus} {...weatherData} />;
 };
