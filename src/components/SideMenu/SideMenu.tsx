@@ -23,8 +23,6 @@ type PropsType = {
   onDeleteCityClick: (lat: number) => void;
   isAutoThemeMode: boolean;
   themeModeHandler: () => void;
-  isDayTheme: boolean;
-  dayModeHandler: () => void;
 };
 
 const SideMenu = ({
@@ -34,8 +32,6 @@ const SideMenu = ({
   onDeleteCityClick,
   isAutoThemeMode,
   themeModeHandler,
-  isDayTheme,
-  dayModeHandler,
 }: PropsType) => {
   return (
     <div className={styles.sideMenu}>
@@ -68,8 +64,6 @@ const SideMenu = ({
         <Toggle
           isAutoThemeMode={isAutoThemeMode}
           themeModeHandler={themeModeHandler}
-          isDayTheme={isDayTheme}
-          dayModeHandler={dayModeHandler}
         />
       </div>
     </div>

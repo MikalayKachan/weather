@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { CONSTANTS } from 'constants/common';
 
@@ -10,8 +10,11 @@ import { useFetch } from 'hooks/useFetch';
 import { API } from 'api/api';
 
 import CityPage from './CityPage';
+import { AppContext } from 'helpers/context';
 
 const CityPageContainer = () => {
+  const { state, dispatch } = useContext(AppContext);
+
   const query = useQuery();
   const lat = query.get('lat');
   const lon = query.get('lon');
@@ -52,6 +55,11 @@ const CityPageContainer = () => {
     currentWeatherData &&
     forecastWeatherData &&
     getWeatherData(currentWeatherData, forecastWeatherData);
+
+  weatherData &&
+    dispatch({ type: 'SET_DAY_THEME_API', payload: weatherData.isDay });
+  weatherData &&
+    dispatch({ type: 'SET_DAY_THEME', payload: weatherData.isDay });
 
   return <CityPage loading={loading} {...weatherData} />;
 };
