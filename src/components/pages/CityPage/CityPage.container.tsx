@@ -13,7 +13,7 @@ import CityPage from './CityPage';
 import { AppContext } from 'helpers/context';
 
 const CityPageContainer = () => {
-  const { dispatch } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
 
   const query = useQuery();
   const lat = query.get('lat');
@@ -57,9 +57,13 @@ const CityPageContainer = () => {
   const isDay = weatherData && weatherData.isDay;
 
   useEffect(() => {
-    dispatch({ type: 'SET_DAY_THEME_API', payload: isDay });
-    dispatch({ type: 'SET_DAY_THEME', payload: isDay });
-  }, [isDay]);
+    if (!loading && isDay !== null) {
+      dispatch({ type: 'SET_DAY_THEME_API', payload: isDay });
+      if (state.themeAutoMode) {
+        dispatch({ type: 'SET_DAY_THEME', payload: isDay });
+      }
+    }
+  }, [isDay, loading]);
 
   return <CityPage loading={loading} {...weatherData} />;
 };

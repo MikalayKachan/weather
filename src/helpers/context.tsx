@@ -4,10 +4,12 @@ import { ActionsType, reducer } from './reducer';
 export type StateType = {
   isDayThemeAPI: boolean;
   isDayTheme: boolean;
+  themeAutoMode: boolean;
 };
 const initialState: StateType = {
   isDayThemeAPI: true,
   isDayTheme: true,
+  themeAutoMode: true,
 };
 
 const AppContext = createContext<{

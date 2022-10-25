@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import styles from './Toggle.module.scss';
 import { AppContext } from 'helpers/context';
 
-type PropsType = {
-  isAutoThemeMode: boolean;
-  themeModeHandler: () => void;
-};
-
-const Toggle = ({ isAutoThemeMode, themeModeHandler }: PropsType) => {
+const Toggle = () => {
   const { state, dispatch } = useContext(AppContext);
+  const isDay = state.isDayTheme !== null ? state.isDayTheme : true;
 
+  const onCheckboxChange = () => {
+    dispatch({ type: 'SET_THEME_AUTO_MODE', payload: !state.themeAutoMode });
+    dispatch({ type: 'SET_DAY_THEME', payload: state.isDayThemeAPI });
+  };
   const onToggleChange = () => {
     dispatch({ type: 'SET_DAY_THEME', payload: !state.isDayTheme });
   };
@@ -18,18 +18,18 @@ const Toggle = ({ isAutoThemeMode, themeModeHandler }: PropsType) => {
     <>
       <input
         type="checkbox"
-        checked={isAutoThemeMode}
-        onChange={themeModeHandler}
+        checked={state.themeAutoMode}
+        onChange={onCheckboxChange}
       />
-      {isAutoThemeMode && <span>Auto</span>}
+      {state.themeAutoMode && <span>Auto</span>}
       <div className={styles.vcToggleContainer}>
         <label className={styles.vcSwitch}>
           <input
             type="checkbox"
             className={styles.vcSwitchInput}
-            checked={state.isDayTheme}
+            checked={isDay}
             onChange={onToggleChange}
-            disabled={isAutoThemeMode}
+            disabled={state.themeAutoMode}
           />
           <span
             className={styles.vcSwitchLabel}
