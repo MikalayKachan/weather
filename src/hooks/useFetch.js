@@ -37,7 +37,7 @@ export const useFetch = (
         setState({
           loading: false,
           error: null,
-          data: response.data, //TODO
+          data: response.data,
         });
 
         if (onSuccess) {

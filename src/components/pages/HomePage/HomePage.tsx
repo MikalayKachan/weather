@@ -48,7 +48,7 @@ const HomePage = ({
   return (
     <Layout>
       <div className={styles.main}>
-        {currentWeatherLoading ? (
+        {currentWeatherLoading || name === undefined ? (
           <Loader className={styles.loader} />
         ) : (
           <>

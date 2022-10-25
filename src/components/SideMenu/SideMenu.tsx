@@ -21,8 +21,6 @@ type PropsType = {
   onSearchClick: () => void;
   onCityClick: (lat: number, lon: number) => void;
   onDeleteCityClick: (lat: number) => void;
-  isAutoThemeMode: boolean;
-  themeModeHandler: () => void;
 };
 
 const SideMenu = ({
@@ -30,8 +28,6 @@ const SideMenu = ({
   onSearchClick,
   onCityClick,
   onDeleteCityClick,
-  isAutoThemeMode,
-  themeModeHandler,
 }: PropsType) => {
   return (
     <div className={styles.sideMenu}>
@@ -61,10 +57,7 @@ const SideMenu = ({
         ))}
       </div>
       <div className={styles.iconsLine}>
-        <Toggle
-          isAutoThemeMode={isAutoThemeMode}
-          themeModeHandler={themeModeHandler}
-        />
+        <Toggle />
       </div>
     </div>
   );

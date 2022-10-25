@@ -13,20 +13,10 @@ import HomePage from './HomePage';
 import { AppContext } from 'helpers/context';
 
 const HomePageContainer = () => {
-  const { dispatch } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
 
   const [locatingStatus, setLocatingStatus] = useState('');
   const [coordinate, setCoordinate] = useState<[number, number]>([0, 0]);
-
-  const lat = coordinate[0];
-  const lon = coordinate[1];
-
-  const currentSearchValue = {
-    reqType: CONSTANTS.WEATHER_REQUEST,
-    lat,
-    lon,
-    units: CONSTANTS.UNITS,
-  };
 
   const successGeolocation = (position: GeolocationPosition) => {
     setLocatingStatus('');
@@ -50,11 +40,21 @@ const HomePageContainer = () => {
     }
   }, []);
 
+  const lat = coordinate[0];
+  const lon = coordinate[1];
+
+  const currentSearchValue = {
+    reqType: CONSTANTS.WEATHER_REQUEST,
+    lat,
+    lon,
+    units: CONSTANTS.UNITS,
+  };
+
   const { loading: currentWeatherLoading, data: currentWeatherData } = useFetch(
     {
       defaultData: null,
       fetcher: API.getWeatherData,
-      stopRequest: false,
+      stopRequest: coordinate[0] === 0 && coordinate[1] === 0,
       immediately: false,
       onSuccess: null,
       onError: null,
@@ -71,11 +71,21 @@ const HomePageContainer = () => {
   const isDay = weatherData && weatherData.isDay;
 
   useEffect(() => {
-    dispatch({ type: 'SET_DAY_THEME_API', payload: isDay });
-    dispatch({ type: 'SET_DAY_THEME', payload: isDay });
-  }, [isDay]);
+    if (!currentWeatherLoading && isDay !== null) {
+      dispatch({ type: 'SET_DAY_THEME_API', payload: isDay });
+      if (state.themeAutoMode) {
+        dispatch({ type: 'SET_DAY_THEME', payload: isDay });
+      }
+    }
+  }, [isDay, currentWeatherLoading]);
 
-  return <HomePage locatingStatus={locatingStatus} {...weatherData} />;
+  return (
+    <HomePage
+      locatingStatus={locatingStatus}
+      currentWeatherLoading={currentWeatherLoading}
+      {...weatherData}
+    />
+  );
 };
 
 export default HomePageContainer;
